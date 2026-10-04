@@ -1,1 +1,535 @@
-# about-me
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+
+<meta
+name=“viewport”
+content=“width=device-width, initial-scale=1, viewport-fit=cover”
+
+<title>About Me — Rainy.Ren</title>
+<link
+  href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+>
+<style>
+/* =====================================================
+   VARIABLES
+===================================================== */
+:root{
+  --bg:#e8e8e5;
+  --paper:#f2f2ef;
+  --paper-soft:#eeeeeb;
+  --line:#d2d2ce;
+  --line-dark:#bdbdb8;
+  --text:#292929;
+  --text-soft:#777772;
+  --black:#171717;
+}
+/* =====================================================
+   BASIC
+===================================================== */
+*{
+  box-sizing:border-box;
+}
+html,
+body{
+  margin:0;
+  min-height:100%;
+}
+body{
+  background:
+    linear-gradient(
+      135deg,
+      #e4e4e1,
+      #f0f0ed,
+      #dededb
+    );
+  color:var(--text);
+  font-family:
+    'Sarabun',
+    'Noto Sans Thai',
+    sans-serif;
+  overflow-x:hidden;
+}
+/* =====================================================
+   BACKGROUND
+===================================================== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(255,255,255,.55),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(255,255,255,.35),
+      transparent 35%
+    );
+  z-index:0;
+}
+/* =====================================================
+   PAGE
+===================================================== */
+.page{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:1100px;
+  min-height:100vh;
+  margin:0 auto;
+  padding:24px;
+}
+/* =====================================================
+   TOP BAR
+===================================================== */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+  padding:
+    10px
+    4px;
+}
+.back{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#555;
+  text-decoration:none;
+  font-family:'Oxanium',sans-serif;
+  font-size:.82rem;
+  letter-spacing:.5px;
+  transition:.2s ease;
+}
+.back:hover{
+  color:#111;
+  transform:translateX(-3px);
+}
+.label{
+  font-family:'Oxanium',sans-serif;
+  font-size:.68rem;
+  letter-spacing:2px;
+  color:#999;
+}
+/* =====================================================
+   MAIN WINDOW
+===================================================== */
+.window{
+  display:grid;
+  grid-template-columns:
+    300px
+    minmax(0,1fr);
+  min-height:720px;
+  background:
+    rgba(242,242,239,.88);
+  border:
+    1px solid
+    rgba(170,170,165,.65);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:
+    0 20px 55px
+    rgba(0,0,0,.08),
+    0 2px 10px
+    rgba(0,0,0,.04);
+  backdrop-filter:
+    blur(12px);
+  -webkit-backdrop-filter:
+    blur(12px);
+}
+/* =====================================================
+   PROFILE SIDE
+===================================================== */
+.profile{
+  padding:
+    34px
+    28px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(230,230,226,.9),
+      rgba(239,239,236,.75)
+    );
+  border-right:
+    1px solid
+    var(--line);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+/* =====================================================
+   PROFILE IMAGE
+===================================================== */
+.profile-image{
+  width:190px;
+  height:240px;
+  object-fit:cover;
+  display:block;
+  border-radius:14px;
+  border:
+    1px solid
+    #c8c8c3;
+  box-shadow:
+    0 10px 25px
+    rgba(0,0,0,.08);
+  background:#ddd;
+}
+/* =====================================================
+   PROFILE NAME
+===================================================== */
+.profile-name{
+  margin:
+    20px 0 0;
+  font-family:
+    'Oxanium',
+    sans-serif;
+  font-size:1.25rem;
+  font-weight:600;
+  letter-spacing:.5px;
+  color:#222;
+}
+.profile-sub{
+  margin:
+    6px 0 0;
+  font-size:.76rem;
+  color:#999;
+  letter-spacing:1px;
+}
+/* =====================================================
+   CONTENT SIDE
+===================================================== */
+.content{
+  padding:
+    28px
+    34px
+    45px;
+  min-width:0;
+}
+/* =====================================================
+   VIDEO
+===================================================== */
+.video-box{
+  width:100%;
+  max-width:620px;
+  margin:0 auto 30px;
+  padding:5px;
+  background:#ddd;
+  border:
+    1px solid
+    #c8c8c3;
+  border-radius:17px;
+  overflow:hidden;
+  box-shadow:
+    0 8px 24px
+    rgba(0,0,0,.07);
+}
+.video-box video{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:360px;
+  object-fit:cover;
+  border-radius:12px;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+  -webkit-user-drag:none;
+}
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+.section-title{
+  margin:
+    0 0 15px;
+  padding-bottom:12px;
+  border-bottom:
+    1px solid
+    var(--line);
+  font-family:
+    'Oxanium',
+    sans-serif;
+  font-size:
+    clamp(
+      1.35rem,
+      4vw,
+      1.8rem
+    );
+  font-weight:600;
+  letter-spacing:.5px;
+  color:#242424;
+}
+/* =====================================================
+   ARTICLE
+===================================================== */
+.article{
+  max-width:700px;
+}
+.article p{
+  margin:
+    0 0 16px;
+  font-size:
+    1rem;
+  line-height:1.9;
+  font-weight:400;
+  color:#555;
+}
+.article .intro{
+  color:#333;
+  font-weight:500;
+}
+/* =====================================================
+   SMALL INFO
+===================================================== */
+.info{
+  margin-top:28px;
+  padding-top:18px;
+  border-top:
+    1px solid
+    var(--line);
+  display:grid;
+  gap:10px;
+}
+.info-row{
+  display:flex;
+  gap:12px;
+  font-size:.9rem;
+}
+.info-label{
+  min-width:90px;
+  color:#999;
+  font-family:'Oxanium',sans-serif;
+  font-size:.72rem;
+  letter-spacing:1px;
+}
+.info-value{
+  color:#555;
+}
+/* =====================================================
+   HOVER
+===================================================== */
+.profile-image{
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+.profile-image:hover{
+  transform:
+    translateY(-3px);
+  box-shadow:
+    0 14px 30px
+    rgba(0,0,0,.12);
+}
+/* =====================================================
+   MOBILE
+===================================================== */
+@media (max-width:760px){
+  .page{
+    padding:
+      14px;
+  }
+  .window{
+    grid-template-columns:1fr;
+    min-height:auto;
+    border-radius:18px;
+  }
+  .profile{
+    padding:
+      28px
+      20px;
+    border-right:none;
+    border-bottom:
+      1px solid
+      var(--line);
+  }
+  .profile-image{
+    width:150px;
+    height:190px;
+  }
+  .profile-name{
+    margin-top:15px;
+  }
+  .content{
+    padding:
+      22px
+      20px
+      35px;
+  }
+  .video-box{
+    margin-bottom:25px;
+  }
+  .article p{
+    font-size:.95rem;
+    line-height:1.85;
+  }
+}
+/* =====================================================
+   VERY SMALL SCREEN
+===================================================== */
+@media (max-width:400px){
+  .page{
+    padding:
+      10px;
+  }
+  .content{
+    padding:
+      18px
+      16px
+      30px;
+  }
+  .profile-image{
+    width:135px;
+    height:175px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <!-- ===================================================
+       TOP BAR
+  ==================================================== -->
+  <div class="topbar">
+<a
+  class="back"
+  href="https://r3ny100709.github.io/lobby1/"
+>
+  ← Lobby
+</a>
+<span class="label">
+  RAINY.REN
+</span>
+  </div>
+  <!-- ===================================================
+       MAIN WINDOW
+  ==================================================== -->
+  <main class="window">
+<!-- =================================================
+     PROFILE
+================================================== -->
+<aside class="profile">
+  <img
+    class="profile-image"
+    src="./IMG_7691.jpeg"
+    alt="Profile"
+  >
+  <h1 class="profile-name">
+    Nunshacha *****
+  </h1>
+  <p class="profile-sub">
+    profile
+  </p>
+</aside>
+<!-- =================================================
+     CONTENT
+================================================== -->
+<section class="content">
+  <!-- VIDEO -->
+  <div class="video-box">
+    <video
+      id="aboutVideo"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      disablepictureinpicture
+      disableremoteplayback
+      controlslist="nodownload nofullscreen noremoteplayback"
+      tabindex="-1"
+    >
+      <source
+        src="./snaptik_7447083556813262098_hd.mp4"
+        type="video/mp4"
+      >
+    </video>
+  </div>
+  <!-- TITLE -->
+  <h2 class="section-title">
+    about me
+  </h2>
+  <!-- ARTICLE -->
+  <article class="article">
+    <p class="intro">
+      สวัสดี เราชื่อ Nunshacha
+    </p>
+    <p>
+      เรียนแผนวิทย์คณิต โรงเรียน…
+    </p>
+    <p>
+      เป็นคนที่สนใจการออกแบบเว็บไซต์
+      การสร้างงานดิจิทัล และการทดลองทำอะไรใหม่ ๆ
+      โดยในเว็บไซต์นี้จะค่อย ๆ รวบรวมสิ่งที่เราเรียนรู้
+      และโปรเจกต์ต่าง ๆ ที่กำลังทำอยู่
+    </p>
+    <p>
+      เว็บไซต์นี้เป็นพื้นที่เล็ก ๆ
+      ที่เราใช้บันทึกผลงาน ความคิด
+      และสิ่งต่าง ๆ ที่อยากสร้างขึ้นด้วยตัวเอง
+    </p>
+    <!-- INFO -->
+    <div class="info">
+      <div class="info-row">
+        <span class="info-label">
+          INTEREST
+        </span>
+        <span class="info-value">
+          Web / Design / Digital
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">
+          PROJECT
+        </span>
+        <span class="info-value">
+          Rainy.Ren
+        </span>
+      </div>
+    </div>
+  </article>
+</section>
+  </main>
+</div>
+<script>
+/* =====================================================
+   VIDEO
+===================================================== */
+const video =
+  document.getElementById('aboutVideo');
+function keepVideoPlaying(){
+  if(video.paused){
+    video.play().catch(
+      () => {}
+    );
+  }
+}
+video.addEventListener(
+  'pause',
+  keepVideoPlaying
+);
+video.addEventListener(
+  'ended',
+  () => {
+    video.currentTime = 0;
+    keepVideoPlaying();
+  }
+);
+video.play().catch(
+  () => {}
+);
+setInterval(
+  keepVideoPlaying,
+  500
+);
+</script>
+</body>
+</html>
