@@ -15,24 +15,25 @@
   >
 
   <style>
+
     :root{
-      --bg:#1D3640;
-      --profile:#3C4D59;
+      --red:#ff1738;
+      --red-dark:#8f1025;
+      --red-soft:#ff5268;
 
-      --bg-dark:#12252d;
-      --profile-dark:#2d3b45;
+      --black:#000000;
+      --black-soft:#080808;
+      --card:#0d0d0d;
 
-      --paper:#dce7ea;
-      --paper-soft:#cbd9dd;
+      --white:#ffffff;
+      --text:#eeeeee;
+      --text-soft:#9c9c9c;
 
-      --line:#657983;
-      --line-dark:#344650;
+      --line:rgba(255,23,56,.7);
 
-      --text:#e0eaed;
-      --text-soft:#9eafb6;
-
-      --shadow:rgba(0,0,0,.45);
+      --shadow:rgba(0,0,0,.65);
     }
+
 
     *{
       box-sizing:border-box;
@@ -40,9 +41,11 @@
       padding:0;
     }
 
+
     html{
       scroll-behavior:smooth;
     }
+
 
     body{
       min-height:100vh;
@@ -56,15 +59,15 @@
 
       background:
         radial-gradient(
-          circle at 15% 10%,
-          rgba(255,255,255,.06),
-          transparent 30%
+          circle at 50% 0%,
+          rgba(255,23,56,.10),
+          transparent 35%
         ),
         linear-gradient(
           135deg,
-          #12252d 0%,
-          #1D3640 48%,
-          #10242c 100%
+          #000000 0%,
+          #080808 50%,
+          #000000 100%
         );
 
       padding:24px;
@@ -72,23 +75,88 @@
       overflow-x:hidden;
     }
 
-    body::before{
-      content:"";
+
+    /* =========================
+       METEOR BACKGROUND
+    ========================= */
+
+    #sky{
       position:fixed;
+
       inset:0;
 
       pointer-events:none;
 
-      opacity:.08;
+      overflow:hidden;
 
-      background-image:
-        radial-gradient(
-          rgba(255,255,255,.7) .6px,
-          transparent .6px
+      z-index:0;
+    }
+
+
+    .meteor{
+      position:absolute;
+
+      top:-80px;
+
+      width:2px;
+      height:75px;
+
+      border-radius:50%;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(255,255,255,0),
+          rgba(255,255,255,.5),
+          rgba(255,23,56,.9),
+          #fff
         );
 
-      background-size:6px 6px;
+      filter:
+        drop-shadow(
+          0 0 5px
+          rgba(255,23,56,.9)
+        )
+        drop-shadow(
+          0 0 14px
+          rgba(255,23,56,.45)
+        );
+
+      animation:
+        meteorFall
+        linear
+        forwards;
     }
+
+
+    @keyframes meteorFall{
+
+      0%{
+        transform:
+          translate(0,0)
+          rotate(25deg);
+
+        opacity:0;
+      }
+
+      10%{
+        opacity:1;
+      }
+
+      75%{
+        opacity:1;
+      }
+
+      100%{
+        transform:
+          translate(220px,115vh)
+          rotate(25deg);
+
+        opacity:0;
+      }
+
+    }
+
 
     /* =========================
        MAIN WINDOW
@@ -97,27 +165,45 @@
     .window{
       position:relative;
 
+      z-index:1;
+
       width:min(1100px,100%);
+
       min-height:680px;
 
       margin:auto;
 
       display:grid;
+
       grid-template-columns:300px 1fr;
 
       overflow:hidden;
 
-      background:rgba(25,39,45,.96);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(16,16,16,.97),
+          rgba(5,5,5,.96)
+        );
 
-      border:1px solid rgba(183,202,208,.28);
+      border:
+        1px solid
+        rgba(255,23,56,.55);
 
       box-shadow:
         0 25px 70px var(--shadow),
-        0 0 0 1px rgba(0,0,0,.18);
+
+        0 0 12px
+        rgba(255,23,56,.12),
+
+        0 0 0 1px
+        rgba(0,0,0,.4);
 
       backdrop-filter:blur(12px);
+
       -webkit-backdrop-filter:blur(12px);
     }
+
 
     /* =========================
        PROFILE
@@ -131,103 +217,176 @@
       background:
         linear-gradient(
           180deg,
-          #3C4D59 0%,
-          #34444f 100%
+          rgba(25,25,25,.98),
+          rgba(9,9,9,.98)
         );
 
-      border-right:1px solid rgba(220,232,235,.22);
+      border-right:
+        1px solid
+        rgba(255,23,56,.45);
 
       display:flex;
+
       flex-direction:column;
 
       align-items:flex-start;
     }
 
+
+    /* red side line */
+
+    .profile::before{
+      content:"";
+
+      position:absolute;
+
+      left:0;
+
+      top:18px;
+      bottom:18px;
+
+      width:2px;
+
+      background:
+        var(--red);
+
+      box-shadow:
+        0 0 7px
+        rgba(255,23,56,.7),
+
+        0 0 15px
+        rgba(255,23,56,.25);
+    }
+
+
     .back-button{
       display:inline-flex;
+
       align-items:center;
+
       justify-content:center;
 
       padding:8px 15px;
 
       margin-bottom:28px;
 
-      color:var(--text);
+      color:#fff;
 
       text-decoration:none;
 
       font-size:.78rem;
+
       font-weight:600;
 
       letter-spacing:1.5px;
 
-      border:1px solid rgba(220,232,235,.48);
+      border:
+        1px solid
+        rgba(255,23,56,.75);
 
-      background:rgba(15,29,36,.35);
+      background:
+        rgba(10,10,10,.75);
 
       transition:.25s ease;
 
       box-shadow:
-        0 0 0 1px rgba(0,0,0,.08);
+        0 0 8px
+        rgba(255,23,56,.12);
     }
+
 
     .back-button:hover{
-      background:rgba(220,232,235,.10);
+      background:
+        rgba(255,23,56,.10);
 
-      border-color:#dce8eb;
+      border-color:
+        var(--red-soft);
 
-      transform:translateY(-1px);
+      box-shadow:
+        0 0 10px
+        rgba(255,23,56,.35);
+
+      transform:
+        translateY(-1px);
     }
+
 
     .profile-image{
       width:100%;
 
       display:flex;
+
       justify-content:flex-start;
     }
 
+
     .profile-image img{
       width:170px;
+
       height:220px;
 
       object-fit:cover;
 
       display:block;
 
-      border:1px solid rgba(220,232,235,.48);
+      border:
+        1px solid
+        rgba(255,23,56,.7);
 
       box-shadow:
-        0 12px 30px rgba(0,0,0,.35);
+        0 12px 30px
+        rgba(0,0,0,.6),
+
+        0 0 12px
+        rgba(255,23,56,.10);
     }
+
 
     .name{
       margin-top:18px;
 
       font-size:1.2rem;
+
       font-weight:600;
 
       letter-spacing:1px;
 
-      color:#e3ecef;
+      color:#fff;
+
+      text-shadow:
+        0 0 7px
+        rgba(255,23,56,.3);
     }
+
 
     .profile-line{
       width:55px;
+
       height:1px;
 
       margin:14px 0;
 
-      background:#8ea1aa;
+      background:
+        var(--red);
+
+      box-shadow:
+        0 0 7px
+        rgba(255,23,56,.6);
     }
+
 
     .profile-small{
-      font-family:'Sarabun',sans-serif;
+      font-family:
+        'Sarabun',
+        sans-serif;
 
       font-size:.8rem;
+
       line-height:1.8;
 
-      color:#bdcbd0;
+      color:#a8a8a8;
     }
+
 
     /* =========================
        CONTENT
@@ -239,38 +398,66 @@
       background:
         linear-gradient(
           145deg,
-          rgba(30,48,55,.98),
-          rgba(21,35,41,.98)
+          rgba(17,17,17,.98),
+          rgba(6,6,6,.98)
         );
     }
 
+
     .video-box{
+      position:relative;
+
       width:100%;
+
       max-width:520px;
 
       margin:0 auto 34px;
 
+      padding:5px;
+
       overflow:hidden;
 
-      background:#10262e;
+      background:
+        rgba(0,0,0,.9);
 
-      border:1px solid rgba(160,180,187,.30);
+      border:
+        2px solid
+        rgba(255,23,56,.8);
+
+      border-radius:20px;
 
       box-shadow:
-        0 15px 35px rgba(0,0,0,.38);
+        0 0 10px
+        rgba(255,23,56,.35),
+
+        0 0 28px
+        rgba(255,23,56,.12),
+
+        0 15px 35px
+        rgba(0,0,0,.55);
     }
+
 
     .video-box video{
       display:block;
 
       width:100%;
+
       height:auto;
+
+      border-radius:15px;
 
       pointer-events:none;
 
       user-select:none;
+
       -webkit-user-select:none;
+
+      -webkit-touch-callout:none;
+
+      -webkit-user-drag:none;
     }
+
 
     /* =========================
        ABOUT
@@ -287,10 +474,18 @@
 
       text-transform:lowercase;
 
-      color:#dce7ea;
+      color:#fff;
 
       text-align:left;
+
+      text-shadow:
+        0 0 7px
+        rgba(255,255,255,.45),
+
+        0 0 16px
+        rgba(255,23,56,.45);
     }
+
 
     .about-title::after{
       content:"";
@@ -298,12 +493,19 @@
       display:block;
 
       width:48px;
-      height:1px;
+
+      height:2px;
 
       margin-top:10px;
 
-      background:#71838c;
+      background:
+        var(--red);
+
+      box-shadow:
+        0 0 8px
+        rgba(255,23,56,.7);
     }
+
 
     .about-text{
       max-width:700px;
@@ -316,24 +518,33 @@
 
       line-height:2;
 
-      color:#bdcbd0;
+      color:#bcbcbc;
     }
+
 
     .about-text p{
       margin-bottom:18px;
     }
 
-    .about-text .intro{
-      color:#e0eaed;
 
-      font-family:'Oxanium',sans-serif;
+    .about-text .intro{
+      color:#fff;
+
+      font-family:
+        'Oxanium',
+        sans-serif;
 
       font-size:1rem;
 
       font-weight:500;
 
       letter-spacing:.5px;
+
+      text-shadow:
+        0 0 8px
+        rgba(255,23,56,.3);
     }
+
 
     /* =========================
        INFO
@@ -342,8 +553,11 @@
     .info{
       margin-top:30px;
 
-      border-top:1px solid rgba(160,180,187,.20);
+      border-top:
+        1px solid
+        rgba(255,23,56,.28);
     }
+
 
     .info-row{
       display:grid;
@@ -352,8 +566,11 @@
 
       padding:13px 0;
 
-      border-bottom:1px solid rgba(160,180,187,.16);
+      border-bottom:
+        1px solid
+        rgba(255,23,56,.20);
     }
+
 
     .info-label{
       font-size:.72rem;
@@ -362,16 +579,23 @@
 
       letter-spacing:1.5px;
 
-      color:#82949c;
+      color:
+        var(--red-soft);
+
+      text-shadow:
+        0 0 7px
+        rgba(255,23,56,.25);
     }
+
 
     .info-value{
       font-size:.82rem;
 
-      color:#c4d1d5;
+      color:#c7c7c7;
 
       letter-spacing:.4px;
     }
+
 
     /* =========================
        MOBILE
@@ -383,32 +607,48 @@
         padding:12px;
       }
 
+
       .window{
         grid-template-columns:1fr;
 
         min-height:auto;
       }
 
+
       .profile{
         border-right:none;
 
-        border-bottom:1px solid rgba(220,232,235,.22);
+        border-bottom:
+          1px solid
+          rgba(255,23,56,.45);
 
         padding:22px;
       }
+
+
+      .profile::before{
+        top:12px;
+
+        bottom:12px;
+      }
+
 
       .back-button{
         margin-bottom:22px;
       }
 
+
       .profile-image img{
         width:145px;
+
         height:190px;
       }
+
 
       .content{
         padding:28px 22px 35px;
       }
+
 
       .video-box{
         max-width:none;
@@ -416,14 +656,18 @@
         margin-bottom:28px;
       }
 
+
       .about-title{
         font-size:1.45rem;
       }
 
+
       .about-text{
         font-size:.94rem;
       }
+
     }
+
 
     @media(max-width:400px){
 
@@ -431,33 +675,64 @@
         padding:8px;
       }
 
+
       .profile{
         padding:18px;
       }
+
 
       .content{
         padding:24px 18px 30px;
       }
 
+
       .profile-image img{
         width:130px;
+
         height:175px;
       }
+
 
       .name{
         font-size:1.05rem;
       }
 
+
       .info-row{
         grid-template-columns:105px 1fr;
       }
+
     }
+
+
+    /* =========================
+       REDUCED MOTION
+    ========================= */
+
+    @media (prefers-reduced-motion:reduce){
+
+      *{
+        animation:none !important;
+
+        transition:none !important;
+      }
+
+    }
+
   </style>
 </head>
 
+
 <body>
 
+
+  <!-- METEOR BACKGROUND -->
+
+  <div id="sky"></div>
+
+
   <main class="window">
+
 
     <!-- PROFILE -->
 
@@ -470,18 +745,24 @@
         ← Lobby
       </a>
 
+
       <div class="profile-image">
+
         <img
           src="./IMG_7691.jpeg"
           alt="Profile"
         >
+
       </div>
+
 
       <div class="name">
         Nunshacha *****
       </div>
 
+
       <div class="profile-line"></div>
+
 
       <div class="profile-small">
         About Me
@@ -493,6 +774,7 @@
     <!-- CONTENT -->
 
     <section class="content">
+
 
       <div class="video-box">
 
@@ -508,10 +790,12 @@
           controlslist="nodownload nofullscreen noremoteplayback"
           tabindex="-1"
         >
+
           <source
             src="./snaptik_7447083556813262098_hd.mp4"
             type="video/mp4"
           >
+
         </video>
 
       </div>
@@ -524,13 +808,16 @@
 
       <div class="about-text">
 
+
         <p class="intro">
           สวัสดี เราชื่อ Nunshacha
         </p>
 
+
         <p>
           เรียนแผนวิทย์คณิต โรงเรียน…
         </p>
+
 
         <p>
           เป็นคนที่สนใจการออกแบบเว็บไซต์
@@ -539,18 +826,22 @@
           และโปรเจกต์ต่าง ๆ ที่กำลังทำอยู่
         </p>
 
+
         <p>
           เว็บไซต์นี้เป็นพื้นที่เล็ก ๆ
           ที่เราใช้บันทึกผลงาน ความคิด
           และสิ่งต่าง ๆ ที่อยากสร้างขึ้นด้วยตัวเอง
         </p>
 
+
       </div>
 
 
       <div class="info">
 
+
         <div class="info-row">
+
           <div class="info-label">
             INTEREST
           </div>
@@ -558,10 +849,12 @@
           <div class="info-value">
             Web / Design / Digital
           </div>
+
         </div>
 
 
         <div class="info-row">
+
           <div class="info-label">
             PROJECT
           </div>
@@ -569,37 +862,139 @@
           <div class="info-value">
             Rainy.Ren
           </div>
+
         </div>
+
 
       </div>
 
+
     </section>
+
 
   </main>
 
 
   <script>
 
-    const video = document.getElementById("aboutVideo");
+    /* =========================
+       VIDEO
+    ========================= */
 
-    video.addEventListener("pause", () => {
-      video.play().catch(() => {});
-    });
+    const video =
+      document.getElementById("aboutVideo");
 
-    video.addEventListener("ended", () => {
-      video.currentTime = 0;
-      video.play().catch(() => {});
-    });
 
-    setInterval(() => {
+    function keepVideoPlaying(){
 
       if(video.paused){
-        video.play().catch(() => {});
+
+        video.play().catch(
+          () => {}
+        );
+
       }
 
-    }, 500);
+    }
+
+
+    video.addEventListener(
+      "pause",
+      keepVideoPlaying
+    );
+
+
+    video.addEventListener(
+      "ended",
+      () => {
+
+        video.currentTime = 0;
+
+        keepVideoPlaying();
+
+      }
+    );
+
+
+    video.play().catch(
+      () => {}
+    );
+
+
+    setInterval(
+      keepVideoPlaying,
+      500
+    );
+
+
+    /* =========================
+       METEORS
+    ========================= */
+
+    const sky =
+      document.getElementById("sky");
+
+
+    function spawnMeteor(){
+
+      const el =
+        document.createElement("span");
+
+
+      el.className =
+        "meteor";
+
+
+      el.style.left =
+        Math.random() * 100 + "vw";
+
+
+      el.style.animationDuration =
+        2 + Math.random() * 2 + "s";
+
+
+      el.style.opacity =
+        .5 + Math.random() * .5;
+
+
+      el.style.transform =
+        `rotate(
+          ${20 + Math.random() * 20}deg
+        )`;
+
+
+      sky.appendChild(el);
+
+
+      setTimeout(
+        () => el.remove(),
+        5000
+      );
+
+    }
+
+
+    setInterval(
+      spawnMeteor,
+      450
+    );
+
+
+    for(
+      let i = 0;
+      i < 8;
+      i++
+    ){
+
+      setTimeout(
+        spawnMeteor,
+        i * 180
+      );
+
+    }
 
   </script>
+
 
 </body>
 </html>
