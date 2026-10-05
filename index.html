@@ -1,1000 +1,821 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>About Me — Rainy.Ren</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --red:#ff1738;
+  --red-dark:#8f1025;
+  --red-soft:#ff5268;
+
+  --black:#000000;
+  --black-soft:#080808;
+  --card:#0d0d0d;
+
+  --white:#ffffff;
+  --text:#eeeeee;
+  --text-soft:#9c9c9c;
+
+  --line:rgba(255,23,56,.7);
+  --shadow:rgba(0,0,0,.65);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+
+  font-family:
+    "Oxanium",
+    "Sarabun",
+    "Noto Sans Thai",
+    sans-serif;
+
+  color:var(--text);
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255,23,56,.10),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #000000 0%,
+      #080808 50%,
+      #000000 100%
+    );
+
+  padding:24px;
+
+  overflow-x:hidden;
+}
+
+/* =========================
+   METEOR SKY
+========================= */
+
+#sky{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+
+.meteor{
+  position:absolute;
+
+  top:-80px;
+
+  width:2px;
+  height:75px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0),
+      rgba(255,23,56,.9),
+      rgba(255,23,56,0)
+    );
+
+  filter:
+    drop-shadow(0 0 5px rgba(255,23,56,.8))
+    drop-shadow(0 0 10px rgba(255,23,56,.35));
+
+  animation:
+    meteorFall linear forwards;
+}
+
+@keyframes meteorFall{
+  0%{
+    transform:translate3d(0,0,0) rotate(25deg);
+  }
 
-  <title>About Me</title>
+  100%{
+    transform:translate3d(-180px,110vh,0) rotate(25deg);
+  }
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+/* =========================
+   MAIN WINDOW
+========================= */
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600&display=swap"
-    rel="stylesheet"
-  >
+.window{
+  position:relative;
+  z-index:1;
 
-  <style>
+  width:min(1100px,100%);
+  margin:0 auto;
 
-    :root{
-      --red:#ff1738;
-      --red-dark:#8f1025;
-      --red-soft:#ff5268;
+  display:grid;
+  grid-template-columns:300px 1fr;
 
-      --black:#000000;
-      --black-soft:#080808;
-      --card:#0d0d0d;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,18,18,.96),
+      rgba(4,4,4,.98)
+    );
 
-      --white:#ffffff;
-      --text:#eeeeee;
-      --text-soft:#9c9c9c;
+  border:1px solid var(--line);
+  border-radius:24px;
 
-      --line:rgba(255,23,56,.7);
+  box-shadow:
+    0 0 18px rgba(255,23,56,.18),
+    0 0 55px rgba(255,23,56,.08),
+    0 25px 70px var(--shadow);
 
-      --shadow:rgba(0,0,0,.65);
-    }
+  overflow:hidden;
+}
 
+/* =========================
+   PROFILE
+========================= */
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
+.profile{
+  position:relative;
 
+  padding:30px 24px;
 
-    html{
-      scroll-behavior:smooth;
-    }
+  background:
+    linear-gradient(
+      180deg,
+      #101010 0%,
+      #060606 100%
+    );
 
+  border-right:1px solid rgba(255,23,56,.55);
 
-    body{
-      min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-start;
 
-      font-family:
-        'Oxanium',
-        'Sarabun',
-        sans-serif;
+  text-align:center;
+}
 
-      color:var(--text);
+.profile::before{
+  content:"";
 
-      background:
-        radial-gradient(
-          circle at 50% 0%,
-          rgba(255,23,56,.10),
-          transparent 35%
-        ),
-        linear-gradient(
-          135deg,
-          #000000 0%,
-          #080808 50%,
-          #000000 100%
-        );
+  position:absolute;
+  top:0;
+  right:-1px;
 
-      padding:24px;
+  width:3px;
+  height:100%;
 
-      overflow-x:hidden;
-    }
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      var(--red),
+      transparent
+    );
 
+  box-shadow:
+    0 0 10px rgba(255,23,56,.7),
+    0 0 25px rgba(255,23,56,.25);
+}
 
-    /* =========================
-       METEOR BACKGROUND
-    ========================= */
+.profile-image{
+  width:185px;
+  height:185px;
 
-    #sky{
-      position:fixed;
+  border-radius:20px;
 
-      inset:0;
+  object-fit:cover;
 
-      pointer-events:none;
+  border:1px solid rgba(255,23,56,.8);
 
-      overflow:hidden;
+  box-shadow:
+    0 0 12px rgba(255,23,56,.35),
+    0 0 35px rgba(255,23,56,.12);
 
-      z-index:0;
-    }
+  display:block;
+}
 
+.name{
+  margin:20px 0 0;
 
-    .meteor{
-      position:absolute;
+  font-size:1.35rem;
+  font-weight:700;
 
-      top:-80px;
+  letter-spacing:1px;
 
-      width:2px;
-      height:75px;
+  color:var(--white);
 
-      border-radius:50%;
+  text-shadow:
+    0 0 8px rgba(255,23,56,.35);
+}
 
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(255,255,255,0),
-          rgba(255,255,255,.5),
-          rgba(255,23,56,.9),
-          #fff
-        );
+.profile-line{
+  width:70px;
+  height:1px;
 
-      filter:
-        drop-shadow(
-          0 0 5px
-          rgba(255,23,56,.9)
-        )
-        drop-shadow(
-          0 0 14px
-          rgba(255,23,56,.45)
-        );
+  margin:14px 0 0;
 
-      animation:
-        meteorFall
-        linear
-        forwards;
-    }
+  background:var(--red);
 
+  box-shadow:
+    0 0 8px rgba(255,23,56,.7);
+}
 
-    @keyframes meteorFall{
+/* =========================
+   BACK BUTTON
+========================= */
 
-      0%{
-        transform:
-          translate(0,0)
-          rotate(25deg);
+.back-button{
+  position:relative;
 
-        opacity:0;
-      }
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 
-      10%{
-        opacity:1;
-      }
+  margin-top:26px;
 
-      75%{
-        opacity:1;
-      }
+  min-width:145px;
+  height:42px;
 
-      100%{
-        transform:
-          translate(220px,115vh)
-          rotate(25deg);
+  padding:0 20px;
 
-        opacity:0;
-      }
+  color:#ffffff;
+  text-decoration:none;
 
-    }
+  font-family:"Oxanium", sans-serif;
+  font-size:.82rem;
+  font-weight:600;
 
+  letter-spacing:1.5px;
 
-    /* =========================
-       MAIN WINDOW
-    ========================= */
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,23,56,.08),
+      rgba(0,0,0,.85)
+    );
 
-    .window{
-      position:relative;
+  border:1px solid rgba(255,23,56,.75);
 
-      z-index:1;
+  border-radius:12px;
 
-      width:min(1100px,100%);
+  box-shadow:
+    inset 0 0 15px rgba(255,23,56,.04),
+    0 0 8px rgba(255,23,56,.16);
 
-      min-height:680px;
+  transition:
+    .25s ease;
 
-      margin:auto;
+  overflow:hidden;
+}
 
-      display:grid;
+.back-button::before{
+  content:"";
 
-      grid-template-columns:300px 1fr;
+  position:absolute;
+  inset:4px;
 
-      overflow:hidden;
+  border:1px solid rgba(255,23,56,.18);
+  border-radius:8px;
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(16,16,16,.97),
-          rgba(5,5,5,.96)
-        );
+  pointer-events:none;
+}
 
-      border:
-        1px solid
-        rgba(255,23,56,.55);
+.back-button::after{
+  content:"";
 
-      box-shadow:
-        0 25px 70px var(--shadow),
+  position:absolute;
 
-        0 0 12px
-        rgba(255,23,56,.12),
+  left:-60%;
+  top:0;
 
-        0 0 0 1px
-        rgba(0,0,0,.4);
+  width:45%;
+  height:100%;
 
-      backdrop-filter:blur(12px);
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.10),
+      transparent
+    );
 
-      -webkit-backdrop-filter:blur(12px);
-    }
+  transform:skewX(-20deg);
 
+  transition:.5s ease;
+}
 
-    /* =========================
-       PROFILE
-    ========================= */
+.back-button:hover{
+  color:#ffffff;
 
-    .profile{
-      position:relative;
+  border-color:var(--red);
 
-      padding:30px 24px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,23,56,.16),
+      rgba(0,0,0,.9)
+    );
 
-      background:
-        linear-gradient(
-          180deg,
-          rgba(25,25,25,.98),
-          rgba(9,9,9,.98)
-        );
+  box-shadow:
+    0 0 10px rgba(255,23,56,.4),
+    0 0 25px rgba(255,23,56,.15);
 
-      border-right:
-        1px solid
-        rgba(255,23,56,.45);
+  transform:translateY(-2px);
+}
 
-      display:flex;
+.back-button:hover::after{
+  left:120%;
+}
 
-      flex-direction:column;
+.back-button:active{
+  transform:translateY(0) scale(.98);
+}
 
-      align-items:flex-start;
-    }
+/* =========================
+   CONTENT
+========================= */
 
+.content{
+  min-width:0;
 
-    /* red side line */
+  padding:30px;
 
-    .profile::before{
-      content:"";
+  background:
+    linear-gradient(
+      135deg,
+      rgba(14,14,14,.96),
+      rgba(3,3,3,.98)
+    );
+}
 
-      position:absolute;
+/* =========================
+   VIDEO
+========================= */
 
-      left:0;
+.video-box{
+  width:100%;
 
-      top:18px;
-      bottom:18px;
+  border:1px solid rgba(255,23,56,.65);
+  border-radius:20px;
 
-      width:2px;
+  overflow:hidden;
 
-      background:
-        var(--red);
+  background:#000;
 
-      box-shadow:
-        0 0 7px
-        rgba(255,23,56,.7),
+  box-shadow:
+    0 0 15px rgba(255,23,56,.16),
+    0 0 40px rgba(255,23,56,.06);
+}
 
-        0 0 15px
-        rgba(255,23,56,.25);
-    }
+.video-box video{
+  width:100%;
+  display:block;
 
+  aspect-ratio:16 / 9;
 
-    .back-button{
-      display:inline-flex;
+  object-fit:cover;
 
-      align-items:center;
+  background:#000;
 
-      justify-content:center;
+  pointer-events:none;
+  user-select:none;
+}
 
-      padding:8px 15px;
+/* =========================
+   ABOUT TITLE
+========================= */
 
-      margin-bottom:28px;
+.about-title{
+  position:relative;
 
-      color:#fff;
+  margin:30px 0 20px;
 
-      text-decoration:none;
+  padding-bottom:12px;
 
-      font-size:.78rem;
+  font-size:1.8rem;
+  font-weight:700;
 
-      font-weight:600;
+  letter-spacing:1px;
 
-      letter-spacing:1.5px;
+  color:var(--white);
 
-      border:
-        1px solid
-        rgba(255,23,56,.75);
+  text-shadow:
+    0 0 10px rgba(255,23,56,.3);
+}
 
-      background:
-        rgba(10,10,10,.75);
+.about-title::after{
+  content:"";
 
-      transition:.25s ease;
+  position:absolute;
 
-      box-shadow:
-        0 0 8px
-        rgba(255,23,56,.12);
-    }
+  left:0;
+  bottom:0;
 
+  width:65px;
+  height:2px;
 
-    .back-button:hover{
-      background:
-        rgba(255,23,56,.10);
+  background:var(--red);
 
-      border-color:
-        var(--red-soft);
+  box-shadow:
+    0 0 8px rgba(255,23,56,.7);
+}
 
-      box-shadow:
-        0 0 10px
-        rgba(255,23,56,.35);
+/* =========================
+   TEXT
+========================= */
 
-      transform:
-        translateY(-1px);
-    }
+.text{
+  font-size:.95rem;
+  line-height:1.9;
 
+  color:var(--text-soft);
+}
 
-    .profile-image{
-      width:100%;
+.text p{
+  margin:0 0 16px;
+}
 
-      display:flex;
+.text .intro{
+  color:#ffffff;
 
-      justify-content:flex-start;
-    }
+  font-size:1.02rem;
+  font-weight:600;
 
+  text-shadow:
+    0 0 8px rgba(255,23,56,.25);
+}
 
-    .profile-image img{
-      width:170px;
+/* =========================
+   INFO
+========================= */
 
-      height:220px;
+.info{
+  margin-top:28px;
 
-      object-fit:cover;
+  display:grid;
+  grid-template-columns:1fr 1fr;
 
-      display:block;
+  gap:12px;
+}
 
-      border:
-        1px solid
-        rgba(255,23,56,.7);
+.info-card{
+  padding:16px 18px;
 
-      box-shadow:
-        0 12px 30px
-        rgba(0,0,0,.6),
+  background:
+    linear-gradient(
+      145deg,
+      rgba(18,18,18,.95),
+      rgba(6,6,6,.95)
+    );
 
-        0 0 12px
-        rgba(255,23,56,.10);
-    }
+  border:1px solid rgba(255,23,56,.28);
+  border-radius:14px;
 
+  transition:.25s ease;
+}
 
-    .name{
-      margin-top:18px;
+.info-card:hover{
+  border-color:rgba(255,23,56,.65);
 
-      font-size:1.2rem;
+  box-shadow:
+    0 0 15px rgba(255,23,56,.08);
 
-      font-weight:600;
+  transform:translateY(-2px);
+}
 
-      letter-spacing:1px;
+.info-label{
+  display:block;
 
-      color:#fff;
+  margin-bottom:5px;
 
-      text-shadow:
-        0 0 7px
-        rgba(255,23,56,.3);
-    }
+  color:var(--red-soft);
 
+  font-size:.68rem;
+  font-weight:700;
 
-    .profile-line{
-      width:55px;
+  letter-spacing:1.5px;
+}
 
-      height:1px;
+.info-value{
+  color:#dddddd;
 
-      margin:14px 0;
+  font-size:.86rem;
+}
 
-      background:
-        var(--red);
+/* =========================
+   MOBILE
+========================= */
 
-      box-shadow:
-        0 0 7px
-        rgba(255,23,56,.6);
-    }
+@media (max-width:760px){
 
+  body{
+    padding:14px;
+  }
 
-    .profile-small{
-      font-family:
-        'Sarabun',
-        sans-serif;
+  .window{
+    grid-template-columns:1fr;
 
-      font-size:.8rem;
+    border-radius:20px;
+  }
 
-      line-height:1.8;
+  .profile{
+    padding:26px 20px;
 
-      color:#a8a8a8;
-    }
+    border-right:none;
+    border-bottom:1px solid rgba(255,23,56,.5);
+  }
 
+  .profile::before{
+    top:auto;
+    bottom:-1px;
+    right:0;
 
-    /* =========================
-       CONTENT
-    ========================= */
+    width:100%;
+    height:2px;
 
-    .content{
-      padding:36px 42px 45px;
+    background:
+      linear-gradient(
+        to right,
+        transparent,
+        var(--red),
+        transparent
+      );
+  }
 
-      background:
-        linear-gradient(
-          145deg,
-          rgba(17,17,17,.98),
-          rgba(6,6,6,.98)
-        );
-    }
+  .profile-image{
+    width:150px;
+    height:150px;
+  }
 
+  .content{
+    padding:22px 18px 26px;
+  }
 
-    .video-box{
-      position:relative;
+  .about-title{
+    font-size:1.5rem;
+  }
 
-      width:100%;
+  .info{
+    grid-template-columns:1fr;
+  }
+}
 
-      max-width:520px;
+@media (max-width:400px){
 
-      margin:0 auto 34px;
+  body{
+    padding:10px;
+  }
 
-      padding:5px;
+  .profile-image{
+    width:135px;
+    height:135px;
+  }
 
-      overflow:hidden;
+  .content{
+    padding:18px 15px 22px;
+  }
 
-      background:
-        rgba(0,0,0,.9);
+  .text{
+    font-size:.9rem;
+  }
 
-      border:
-        2px solid
-        rgba(255,23,56,.8);
-
-      border-radius:20px;
-
-      box-shadow:
-        0 0 10px
-        rgba(255,23,56,.35),
-
-        0 0 28px
-        rgba(255,23,56,.12),
-
-        0 15px 35px
-        rgba(0,0,0,.55);
-    }
-
-
-    .video-box video{
-      display:block;
-
-      width:100%;
-
-      height:auto;
-
-      border-radius:15px;
-
-      pointer-events:none;
-
-      user-select:none;
-
-      -webkit-user-select:none;
-
-      -webkit-touch-callout:none;
-
-      -webkit-user-drag:none;
-    }
-
-
-    /* =========================
-       ABOUT
-    ========================= */
-
-    .about-title{
-      margin-bottom:22px;
-
-      font-size:1.65rem;
-
-      font-weight:600;
-
-      letter-spacing:2px;
-
-      text-transform:lowercase;
-
-      color:#fff;
-
-      text-align:left;
-
-      text-shadow:
-        0 0 7px
-        rgba(255,255,255,.45),
-
-        0 0 16px
-        rgba(255,23,56,.45);
-    }
-
-
-    .about-title::after{
-      content:"";
-
-      display:block;
-
-      width:48px;
-
-      height:2px;
-
-      margin-top:10px;
-
-      background:
-        var(--red);
-
-      box-shadow:
-        0 0 8px
-        rgba(255,23,56,.7);
-    }
-
-
-    .about-text{
-      max-width:700px;
-
-      font-family:
-        'Sarabun',
-        sans-serif;
-
-      font-size:.98rem;
-
-      line-height:2;
-
-      color:#bcbcbc;
-    }
-
-
-    .about-text p{
-      margin-bottom:18px;
-    }
-
-
-    .about-text .intro{
-      color:#fff;
-
-      font-family:
-        'Oxanium',
-        sans-serif;
-
-      font-size:1rem;
-
-      font-weight:500;
-
-      letter-spacing:.5px;
-
-      text-shadow:
-        0 0 8px
-        rgba(255,23,56,.3);
-    }
-
-
-    /* =========================
-       INFO
-    ========================= */
-
-    .info{
-      margin-top:30px;
-
-      border-top:
-        1px solid
-        rgba(255,23,56,.28);
-    }
-
-
-    .info-row{
-      display:grid;
-
-      grid-template-columns:130px 1fr;
-
-      padding:13px 0;
-
-      border-bottom:
-        1px solid
-        rgba(255,23,56,.20);
-    }
-
-
-    .info-label{
-      font-size:.72rem;
-
-      font-weight:600;
-
-      letter-spacing:1.5px;
-
-      color:
-        var(--red-soft);
-
-      text-shadow:
-        0 0 7px
-        rgba(255,23,56,.25);
-    }
-
-
-    .info-value{
-      font-size:.82rem;
-
-      color:#c7c7c7;
-
-      letter-spacing:.4px;
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media(max-width:760px){
-
-      body{
-        padding:12px;
-      }
-
-
-      .window{
-        grid-template-columns:1fr;
-
-        min-height:auto;
-      }
-
-
-      .profile{
-        border-right:none;
-
-        border-bottom:
-          1px solid
-          rgba(255,23,56,.45);
-
-        padding:22px;
-      }
-
-
-      .profile::before{
-        top:12px;
-
-        bottom:12px;
-      }
-
-
-      .back-button{
-        margin-bottom:22px;
-      }
-
-
-      .profile-image img{
-        width:145px;
-
-        height:190px;
-      }
-
-
-      .content{
-        padding:28px 22px 35px;
-      }
-
-
-      .video-box{
-        max-width:none;
-
-        margin-bottom:28px;
-      }
-
-
-      .about-title{
-        font-size:1.45rem;
-      }
-
-
-      .about-text{
-        font-size:.94rem;
-      }
-
-    }
-
-
-    @media(max-width:400px){
-
-      body{
-        padding:8px;
-      }
-
-
-      .profile{
-        padding:18px;
-      }
-
-
-      .content{
-        padding:24px 18px 30px;
-      }
-
-
-      .profile-image img{
-        width:130px;
-
-        height:175px;
-      }
-
-
-      .name{
-        font-size:1.05rem;
-      }
-
-
-      .info-row{
-        grid-template-columns:105px 1fr;
-      }
-
-    }
-
-
-    /* =========================
-       REDUCED MOTION
-    ========================= */
-
-    @media (prefers-reduced-motion:reduce){
-
-      *{
-        animation:none !important;
-
-        transition:none !important;
-      }
-
-    }
-
-  </style>
+  .back-button{
+    min-width:135px;
+  }
+}
+</style>
 </head>
-
 
 <body>
 
+<!-- METEOR BACKGROUND -->
+<div id="sky"></div>
 
-  <!-- METEOR BACKGROUND -->
+<main class="window">
 
-  <div id="sky"></div>
+  <!-- PROFILE -->
+  <aside class="profile">
+
+    <img
+      class="profile-image"
+      src="./IMG_7691.jpeg"
+      alt="Profile"
+    >
+
+    <div class="name">
+      Nunshacha *****
+    </div>
+
+    <div class="profile-line"></div>
+
+    <a
+      class="back-button"
+      href="https://r3ny100709.github.io/lobby1/"
+    >
+      ← Lobby
+    </a>
+
+  </aside>
 
 
-  <main class="window">
+  <!-- CONTENT -->
+  <section class="content">
 
+    <!-- VIDEO -->
+    <div class="video-box">
 
-    <!-- PROFILE -->
-
-    <aside class="profile">
-
-      <a
-        class="back-button"
-        href="https://r3ny100709.github.io/lobby1/"
+      <video
+        id="aboutVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        disablepictureinpicture
+        disableremoteplayback
+        controlslist="nodownload nofullscreen noremoteplayback"
+        tabindex="-1"
       >
-        ← Lobby
-      </a>
-
-
-      <div class="profile-image">
-
-        <img
-          src="./IMG_7691.jpeg"
-          alt="Profile"
+        <source
+          src="./snaptik_7553702820625632543_v3.mp4"
+          type="video/mp4"
         >
+      </video>
 
+    </div>
+
+
+    <!-- ABOUT ME -->
+    <h1 class="about-title">
+      about me
+    </h1>
+
+
+    <div class="text">
+
+      <p class="intro">
+        สวัสดี เราชื่อ Nunshacha
+      </p>
+
+      <p>
+        เรียนแผนวิทย์คณิต โรงเรียน…
+      </p>
+
+      <p>
+        เป็นคนที่สนใจการออกแบบเว็บไซต์
+        การสร้างงานดิจิทัล และการทดลองทำอะไรใหม่ ๆ
+        โดยในเว็บไซต์นี้จะค่อย ๆ รวบรวมสิ่งที่เราเรียนรู้
+        และโปรเจกต์ต่าง ๆ ที่กำลังทำอยู่
+      </p>
+
+      <p>
+        เว็บไซต์นี้เป็นพื้นที่เล็ก ๆ
+        ที่เราใช้บันทึกผลงาน ความคิด
+        และสิ่งต่าง ๆ ที่อยากสร้างขึ้นด้วยตัวเอง
+      </p>
+
+    </div>
+
+
+    <!-- INFO -->
+    <div class="info">
+
+      <div class="info-card">
+        <span class="info-label">
+          INTEREST
+        </span>
+
+        <span class="info-value">
+          Web / Design / Digital
+        </span>
       </div>
 
 
-      <div class="name">
-        Nunshacha *****
+      <div class="info-card">
+        <span class="info-label">
+          PROJECT
+        </span>
+
+        <span class="info-value">
+          Rainy.Ren
+        </span>
       </div>
 
+    </div>
 
-      <div class="profile-line"></div>
+  </section>
 
+</main>
 
-      <div class="profile-small">
-        About Me
-      </div>
 
-    </aside>
+<script>
 
+/* =========================
+   VIDEO
+========================= */
 
-    <!-- CONTENT -->
+const video =
+  document.getElementById("aboutVideo");
 
-    <section class="content">
+function keepVideoPlaying(){
 
+  if(video.paused){
 
-      <div class="video-box">
+    video.play().catch(()=>{});
 
-        <video
-          id="aboutVideo"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="auto"
-          disablepictureinpicture
-          disableremoteplayback
-          controlslist="nodownload nofullscreen noremoteplayback"
-          tabindex="-1"
-        >
+  }
 
-          <source
-            src="./snaptik_7447083556813262098_hd.mp4"
-            type="video/mp4"
-          >
+}
 
-        </video>
+video.addEventListener(
+  "pause",
+  keepVideoPlaying
+);
 
-      </div>
+video.addEventListener(
+  "ended",
+  () => {
 
+    video.currentTime = 0;
 
-      <h1 class="about-title">
-        about me
-      </h1>
+    keepVideoPlaying();
 
+  }
+);
 
-      <div class="about-text">
+video.play().catch(()=>{});
 
+setInterval(
+  keepVideoPlaying,
+  500
+);
 
-        <p class="intro">
-          สวัสดี เราชื่อ Nunshacha
-        </p>
 
+/* =========================
+   METEORS
+========================= */
 
-        <p>
-          เรียนแผนวิทย์คณิต โรงเรียน…
-        </p>
+const sky =
+  document.getElementById("sky");
 
+function spawnMeteor(){
 
-        <p>
-          เป็นคนที่สนใจการออกแบบเว็บไซต์
-          การสร้างงานดิจิทัล และการทดลองทำอะไรใหม่ ๆ
-          โดยในเว็บไซต์นี้จะค่อย ๆ รวบรวมสิ่งที่เราเรียนรู้
-          และโปรเจกต์ต่าง ๆ ที่กำลังทำอยู่
-        </p>
+  const el =
+    document.createElement("span");
 
+  el.className =
+    "meteor";
 
-        <p>
-          เว็บไซต์นี้เป็นพื้นที่เล็ก ๆ
-          ที่เราใช้บันทึกผลงาน ความคิด
-          และสิ่งต่าง ๆ ที่อยากสร้างขึ้นด้วยตัวเอง
-        </p>
+  el.style.left =
+    Math.random() * 100 + "vw";
 
+  el.style.animationDuration =
+    2 + Math.random() * 2 + "s";
 
-      </div>
+  el.style.opacity =
+    .5 + Math.random() * .5;
 
+  el.style.transform =
+    `rotate(${20 + Math.random() * 20}deg)`;
 
-      <div class="info">
+  sky.appendChild(el);
 
+  setTimeout(
+    () => el.remove(),
+    5000
+  );
 
-        <div class="info-row">
+}
 
-          <div class="info-label">
-            INTEREST
-          </div>
+setInterval(
+  spawnMeteor,
+  450
+);
 
-          <div class="info-value">
-            Web / Design / Digital
-          </div>
+for(let i = 0; i < 8; i++){
 
-        </div>
+  setTimeout(
+    spawnMeteor,
+    i * 180
+  );
 
+}
 
-        <div class="info-row">
-
-          <div class="info-label">
-            PROJECT
-          </div>
-
-          <div class="info-value">
-            Rainy.Ren
-          </div>
-
-        </div>
-
-
-      </div>
-
-
-    </section>
-
-
-  </main>
-
-
-  <script>
-
-    /* =========================
-       VIDEO
-    ========================= */
-
-    const video =
-      document.getElementById("aboutVideo");
-
-
-    function keepVideoPlaying(){
-
-      if(video.paused){
-
-        video.play().catch(
-          () => {}
-        );
-
-      }
-
-    }
-
-
-    video.addEventListener(
-      "pause",
-      keepVideoPlaying
-    );
-
-
-    video.addEventListener(
-      "ended",
-      () => {
-
-        video.currentTime = 0;
-
-        keepVideoPlaying();
-
-      }
-    );
-
-
-    video.play().catch(
-      () => {}
-    );
-
-
-    setInterval(
-      keepVideoPlaying,
-      500
-    );
-
-
-    /* =========================
-       METEORS
-    ========================= */
-
-    const sky =
-      document.getElementById("sky");
-
-
-    function spawnMeteor(){
-
-      const el =
-        document.createElement("span");
-
-
-      el.className =
-        "meteor";
-
-
-      el.style.left =
-        Math.random() * 100 + "vw";
-
-
-      el.style.animationDuration =
-        2 + Math.random() * 2 + "s";
-
-
-      el.style.opacity =
-        .5 + Math.random() * .5;
-
-
-      el.style.transform =
-        `rotate(
-          ${20 + Math.random() * 20}deg
-        )`;
-
-
-      sky.appendChild(el);
-
-
-      setTimeout(
-        () => el.remove(),
-        5000
-      );
-
-    }
-
-
-    setInterval(
-      spawnMeteor,
-      450
-    );
-
-
-    for(
-      let i = 0;
-      i < 8;
-      i++
-    ){
-
-      setTimeout(
-        spawnMeteor,
-        i * 180
-      );
-
-    }
-
-  </script>
-
+</script>
 
 </body>
 </html>
