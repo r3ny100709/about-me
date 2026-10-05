@@ -3,49 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
 <title>About Me — Rainy.Ren</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --red:#ff1738;
   --red-dark:#8f1025;
   --red-soft:#ff5268;
-
   --black:#000000;
   --black-soft:#080808;
   --card:#0d0d0d;
-
   --white:#ffffff;
   --text:#eeeeee;
   --text-soft:#9c9c9c;
-
   --line:rgba(255,23,56,.7);
   --shadow:rgba(0,0,0,.65);
 }
-
 *{
   box-sizing:border-box;
 }
-
 html{
   scroll-behavior:smooth;
 }
-
 body{
   margin:0;
   min-height:100vh;
-
   font-family:
     "Oxanium",
     "Sarabun",
     "Noto Sans Thai",
     sans-serif;
-
   color:var(--text);
-
   background:
     radial-gradient(
       circle at 50% 0%,
@@ -58,16 +46,12 @@ body{
       #080808 50%,
       #000000 100%
     );
-
   padding:24px;
-
   overflow-x:hidden;
 }
-
 /* =========================
    METEOR SKY
 ========================= */
-
 #sky{
   position:fixed;
   inset:0;
@@ -75,15 +59,11 @@ body{
   overflow:hidden;
   z-index:0;
 }
-
 .meteor{
   position:absolute;
-
   top:-80px;
-
   width:2px;
   height:75px;
-
   background:
     linear-gradient(
       to bottom,
@@ -91,93 +71,71 @@ body{
       rgba(255,23,56,.9),
       rgba(255,23,56,0)
     );
-
   filter:
     drop-shadow(0 0 5px rgba(255,23,56,.8))
     drop-shadow(0 0 10px rgba(255,23,56,.35));
-
   animation:
     meteorFall linear forwards;
 }
-
 @keyframes meteorFall{
   0%{
     transform:translate3d(0,0,0) rotate(25deg);
   }
-
   100%{
     transform:translate3d(-180px,110vh,0) rotate(25deg);
   }
 }
-
 /* =========================
    MAIN WINDOW
 ========================= */
-
 .window{
   position:relative;
   z-index:1;
-
   width:min(1100px,100%);
   margin:0 auto;
-
   display:grid;
   grid-template-columns:300px 1fr;
-
   background:
     linear-gradient(
       145deg,
       rgba(18,18,18,.96),
       rgba(4,4,4,.98)
     );
-
   border:1px solid var(--line);
   border-radius:24px;
-
   box-shadow:
     0 0 18px rgba(255,23,56,.18),
     0 0 55px rgba(255,23,56,.08),
     0 25px 70px var(--shadow);
-
-  overflow:hidden;
+  overflow:visible;
 }
-
 /* =========================
    PROFILE
 ========================= */
-
 .profile{
   position:relative;
-
   padding:30px 24px;
-
   background:
     linear-gradient(
       180deg,
       #101010 0%,
       #060606 100%
     );
-
   border-right:1px solid rgba(255,23,56,.55);
-
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:flex-start;
-
   text-align:center;
+  border-radius:24px 0 0 24px;
 }
-
 .profile::before{
   content:"";
-
   position:absolute;
   top:0;
   right:-1px;
-
   width:3px;
   height:100%;
-
   background:
     linear-gradient(
       to bottom,
@@ -185,126 +143,176 @@ body{
       var(--red),
       transparent
     );
-
   box-shadow:
     0 0 10px rgba(255,23,56,.7),
     0 0 25px rgba(255,23,56,.25);
 }
-
 .profile-image{
   width:185px;
   height:185px;
-
   border-radius:20px;
-
   object-fit:cover;
-
   border:1px solid rgba(255,23,56,.8);
-
   box-shadow:
     0 0 12px rgba(255,23,56,.35),
     0 0 35px rgba(255,23,56,.12);
-
   display:block;
 }
-
 .name{
   margin:20px 0 0;
-
   font-size:1.35rem;
   font-weight:700;
-
   letter-spacing:1px;
-
   color:var(--white);
-
   text-shadow:
     0 0 8px rgba(255,23,56,.35);
 }
-
 .profile-line{
   width:70px;
   height:1px;
-
   margin:14px 0 0;
-
   background:var(--red);
-
   box-shadow:
     0 0 8px rgba(255,23,56,.7);
 }
-
+/* =========================
+   THOUGHT BUTTON
+========================= */
+.thought-button{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  width:100%;
+  max-width:220px;
+  min-height:46px;
+  margin-top:22px;
+  padding:0 18px;
+  color:#151515;
+  text-decoration:none;
+  font-family:"Oxanium","Sarabun","Noto Sans Thai",sans-serif;
+  font-size:.82rem;
+  font-weight:700;
+  letter-spacing:1.5px;
+  background:
+    linear-gradient(
+      145deg,
+      #f5f5f5,
+      #cfcfcf
+    );
+  border:2px solid #ffffff;
+  border-radius:13px;
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,.8),
+    0 5px 15px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.95);
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+.thought-button::before{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border:1px solid rgba(0,0,0,.18);
+  border-radius:8px;
+  pointer-events:none;
+}
+.thought-button::after{
+  content:"";
+  position:absolute;
+  left:-70%;
+  top:0;
+  width:45%;
+  height:100%;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.8),
+      transparent
+    );
+  transform:skewX(-20deg);
+  transition:.55s ease;
+  pointer-events:none;
+}
+.thought-button:hover{
+  color:#000000;
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #d8d8d8
+    );
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.8),
+    0 0 16px rgba(255,255,255,.25),
+    0 8px 20px rgba(0,0,0,.55),
+    inset 0 1px 0 #ffffff;
+  transform:translateY(-3px);
+}
+.thought-button:hover::after{
+  left:125%;
+}
+.thought-button:active{
+  transform:translateY(0) scale(.98);
+}
+.thought-icon{
+  font-size:1.05rem;
+  line-height:1;
+}
 /* =========================
    BACK BUTTON
+   TOP LEFT
 ========================= */
-
 .back-button{
-  position:relative;
-
+  position:fixed;
+  top:18px;
+  left:18px;
+  z-index:20;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-
-  margin-top:26px;
-
-  min-width:145px;
+  min-width:130px;
   height:42px;
-
-  padding:0 20px;
-
+  padding:0 18px;
   color:#ffffff;
   text-decoration:none;
-
   font-family:"Oxanium", sans-serif;
-  font-size:.82rem;
+  font-size:.78rem;
   font-weight:600;
-
   letter-spacing:1.5px;
-
   background:
     linear-gradient(
       135deg,
       rgba(255,23,56,.08),
-      rgba(0,0,0,.85)
+      rgba(0,0,0,.88)
     );
-
   border:1px solid rgba(255,23,56,.75);
-
   border-radius:12px;
-
   box-shadow:
     inset 0 0 15px rgba(255,23,56,.04),
     0 0 8px rgba(255,23,56,.16);
-
-  transition:
-    .25s ease;
-
+  transition:.25s ease;
   overflow:hidden;
 }
-
 .back-button::before{
   content:"";
-
   position:absolute;
   inset:4px;
-
   border:1px solid rgba(255,23,56,.18);
   border-radius:8px;
-
   pointer-events:none;
 }
-
 .back-button::after{
   content:"";
-
   position:absolute;
-
   left:-60%;
   top:0;
-
   width:45%;
   height:100%;
-
   background:
     linear-gradient(
       90deg,
@@ -312,245 +320,171 @@ body{
       rgba(255,255,255,.10),
       transparent
     );
-
   transform:skewX(-20deg);
-
   transition:.5s ease;
 }
-
 .back-button:hover{
   color:#ffffff;
-
   border-color:var(--red);
-
   background:
     linear-gradient(
       135deg,
       rgba(255,23,56,.16),
       rgba(0,0,0,.9)
     );
-
   box-shadow:
     0 0 10px rgba(255,23,56,.4),
     0 0 25px rgba(255,23,56,.15);
-
   transform:translateY(-2px);
 }
-
 .back-button:hover::after{
   left:120%;
 }
-
 .back-button:active{
   transform:translateY(0) scale(.98);
 }
-
 /* =========================
    CONTENT
 ========================= */
-
 .content{
   min-width:0;
-
   padding:30px;
-
   background:
     linear-gradient(
       135deg,
       rgba(14,14,14,.96),
       rgba(3,3,3,.98)
     );
+  border-radius:0 24px 24px 0;
 }
-
 /* =========================
    VIDEO
 ========================= */
-
 .video-box{
   width:100%;
-
   border:1px solid rgba(255,23,56,.65);
   border-radius:20px;
-
   overflow:hidden;
-
   background:#000;
-
   box-shadow:
     0 0 15px rgba(255,23,56,.16),
     0 0 40px rgba(255,23,56,.06);
 }
-
 .video-box video{
   width:100%;
   display:block;
-
   height:280px;
-
   object-fit:cover;
-
   background:#000;
-
   pointer-events:none;
   user-select:none;
 }
-
 /* =========================
    ABOUT TITLE
 ========================= */
-
 .about-title{
   position:relative;
-
   margin:30px 0 20px;
-
   padding-bottom:12px;
-
   font-size:1.8rem;
   font-weight:700;
-
   letter-spacing:1px;
-
   color:var(--white);
-
   text-shadow:
     0 0 10px rgba(255,23,56,.3);
 }
-
 .about-title::after{
   content:"";
-
   position:absolute;
-
   left:0;
   bottom:0;
-
   width:65px;
   height:2px;
-
   background:var(--red);
-
   box-shadow:
     0 0 8px rgba(255,23,56,.7);
 }
-
 /* =========================
    TEXT
 ========================= */
-
 .text{
   font-size:.95rem;
   line-height:1.9;
-
   color:var(--text-soft);
 }
-
 .text p{
   margin:0 0 16px;
 }
-
 .text .intro{
   color:#ffffff;
-
   font-size:1.02rem;
   font-weight:600;
-
   text-shadow:
     0 0 8px rgba(255,23,56,.25);
 }
-
 /* =========================
    INFO
 ========================= */
-
 .info{
   margin-top:28px;
-
   display:grid;
   grid-template-columns:1fr 1fr;
-
   gap:12px;
 }
-
 .info-card{
   padding:16px 18px;
-
   background:
     linear-gradient(
       145deg,
       rgba(18,18,18,.95),
       rgba(6,6,6,.95)
     );
-
   border:1px solid rgba(255,23,56,.28);
   border-radius:14px;
-
   transition:.25s ease;
 }
-
 .info-card:hover{
   border-color:rgba(255,23,56,.65);
-
   box-shadow:
     0 0 15px rgba(255,23,56,.08);
-
   transform:translateY(-2px);
 }
-
 .info-label{
   display:block;
-
   margin-bottom:5px;
-
   color:var(--red-soft);
-
   font-size:.68rem;
   font-weight:700;
-
   letter-spacing:1.5px;
 }
-
 .info-value{
   color:#dddddd;
-
   font-size:.86rem;
 }
-
 /* =========================
    MOBILE
 ========================= */
-
 @media (max-width:760px){
-
   body{
     padding:14px;
+    padding-top:70px;
   }
-
   .window{
     grid-template-columns:1fr;
-
     border-radius:20px;
   }
-  
-  .video-box video{
-  height:210px;
-}
-
   .profile{
     padding:26px 20px;
-
     border-right:none;
     border-bottom:1px solid rgba(255,23,56,.5);
+    border-radius:20px 20px 0 0;
   }
-
   .profile::before{
     top:auto;
     bottom:-1px;
     right:0;
-
     width:100%;
     height:2px;
-
     background:
       linear-gradient(
         to right,
@@ -559,267 +493,215 @@ body{
         transparent
       );
   }
-
   .profile-image{
     width:150px;
     height:150px;
   }
-
+  .thought-button{
+    max-width:240px;
+  }
   .content{
     padding:22px 18px 26px;
+    border-radius:0 0 20px 20px;
   }
-
+  .video-box video{
+    height:210px;
+  }
   .about-title{
     font-size:1.5rem;
   }
-
   .info{
     grid-template-columns:1fr;
   }
+  .back-button{
+    top:12px;
+    left:12px;
+    min-width:120px;
+    height:40px;
+  }
 }
-
 @media (max-width:400px){
-
   body{
     padding:10px;
+    padding-top:65px;
   }
-
   .profile-image{
     width:135px;
     height:135px;
   }
-
   .content{
     padding:18px 15px 22px;
   }
-
   .text{
     font-size:.9rem;
   }
-
+  .thought-button{
+    max-width:220px;
+  }
   .back-button{
-    min-width:135px;
+    min-width:115px;
   }
 }
 </style>
 </head>
-
 <body>
-
 <!-- METEOR BACKGROUND -->
 <div id="sky"></div>
+<!-- BACK TO LOBBY -->
 
+<a
+class=“back-button”
+href=“https://r3ny100709.github.io/lobby1/”
+
+← Lobby
 <main class="window">
-
   <!-- PROFILE -->
   <aside class="profile">
-
-    <img
-      class="profile-image"
-      src="./IMG_7691.jpeg"
-      alt="Profile"
-    >
-
-    <div class="name">
-      Nunshacha *****
-    </div>
-
-    <div class="profile-line"></div>
-
-    <a
-      class="back-button"
-      href="https://r3ny100709.github.io/lobby1/"
-    >
-      ← Lobby
-    </a>
-
+<img
+  class="profile-image"
+  src="./IMG_7691.jpeg"
+  alt="Profile"
+>
+<div class="name">
+  Nunshacha *****
+</div>
+<div class="profile-line"></div>
+<!-- THOUGHT -->
+<a
+  class="thought-button"
+  href="https://r3ny100709.github.io/thought/"
+>
+  <span class="thought-icon">💭</span>
+  <span>THOUGHT</span>
+</a>
   </aside>
-
-
   <!-- CONTENT -->
   <section class="content">
-
-    <!-- VIDEO -->
-    <div class="video-box">
-
-      <video
-        id="aboutVideo"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        disablepictureinpicture
-        disableremoteplayback
-        controlslist="nodownload nofullscreen noremoteplayback"
-        tabindex="-1"
-      >
-        <source
-          src="./snaptik_7553702820625632543_v3.mp4"
-          type="video/mp4"
-        >
-      </video>
-
-    </div>
-
-
-    <!-- ABOUT ME -->
-    <h1 class="about-title">
-      about me
-    </h1>
-
-
-    <div class="text">
-
-      <p class="intro">
-        สวัสดี เราชื่อ Nunshacha
-      </p>
-
-      <p>
-        เรียนแผนวิทย์คณิต โรงเรียน…
-      </p>
-
-      <p>
-        เป็นคนที่สนใจการออกแบบเว็บไซต์
-        การสร้างงานดิจิทัล และการทดลองทำอะไรใหม่ ๆ
-        โดยในเว็บไซต์นี้จะค่อย ๆ รวบรวมสิ่งที่เราเรียนรู้
-        และโปรเจกต์ต่าง ๆ ที่กำลังทำอยู่
-      </p>
-
-      <p>
-        เว็บไซต์นี้เป็นพื้นที่เล็ก ๆ
-        ที่เราใช้บันทึกผลงาน ความคิด
-        และสิ่งต่าง ๆ ที่อยากสร้างขึ้นด้วยตัวเอง
-      </p>
-
-    </div>
-
-
-    <!-- INFO -->
-    <div class="info">
-
-      <div class="info-card">
-        <span class="info-label">
-          INTEREST
-        </span>
-
-        <span class="info-value">
-          Web / Design / Digital
-        </span>
-      </div>
-
-
-      <div class="info-card">
-        <span class="info-label">
-          PROJECT
-        </span>
-
-        <span class="info-value">
-          Rainy.Ren
-        </span>
-      </div>
-
-    </div>
-
+<!-- VIDEO -->
+<div class="video-box">
+  <video
+    id="aboutVideo"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    disablepictureinpicture
+    disableremoteplayback
+    controlslist="nodownload nofullscreen noremoteplayback"
+    tabindex="-1"
+  >
+    <source
+      src="./snaptik_7553702820625632543_v3.mp4"
+      type="video/mp4"
+    >
+  </video>
+</div>
+<!-- ABOUT ME -->
+<h1 class="about-title">
+  about me
+</h1>
+<div class="text">
+  <p class="intro">
+    สวัสดี เราชื่อ Nunshacha
+  </p>
+  <p>
+    เรียนแผนวิทย์คณิต โรงเรียน…
+  </p>
+  <p>
+    เป็นคนที่สนใจการออกแบบเว็บไซต์
+    การสร้างงานดิจิทัล และการทดลองทำอะไรใหม่ ๆ
+    โดยในเว็บไซต์นี้จะค่อย ๆ รวบรวมสิ่งที่เราเรียนรู้
+    และโปรเจกต์ต่าง ๆ ที่กำลังทำอยู่
+  </p>
+  <p>
+    เว็บไซต์นี้เป็นพื้นที่เล็ก ๆ
+    ที่เราใช้บันทึกผลงาน ความคิด
+    และสิ่งต่าง ๆ ที่อยากสร้างขึ้นด้วยตัวเอง
+  </p>
+</div>
+<!-- INFO -->
+<div class="info">
+  <div class="info-card">
+    <span class="info-label">
+      INTEREST
+    </span>
+    <span class="info-value">
+      Web / Design / Digital
+    </span>
+  </div>
+  <div class="info-card">
+    <span class="info-label">
+      PROJECT
+    </span>
+    <span class="info-value">
+      Rainy.Ren
+    </span>
+  </div>
+</div>
   </section>
-
 </main>
-
-
 <script>
-
 /* =========================
    VIDEO
 ========================= */
-
 const video =
   document.getElementById("aboutVideo");
-
 function keepVideoPlaying(){
-
   if(video.paused){
-
     video.play().catch(()=>{});
-
   }
-
 }
-
 video.addEventListener(
   "pause",
   keepVideoPlaying
 );
-
 video.addEventListener(
   "ended",
   () => {
-
     video.currentTime = 0;
-
     keepVideoPlaying();
-
   }
 );
-
 video.play().catch(()=>{});
-
 setInterval(
   keepVideoPlaying,
   500
 );
-
-
 /* =========================
    METEORS
 ========================= */
-
 const sky =
   document.getElementById("sky");
-
 function spawnMeteor(){
-
   const el =
     document.createElement("span");
-
   el.className =
     "meteor";
-
   el.style.left =
     Math.random() * 100 + "vw";
-
   el.style.animationDuration =
     2 + Math.random() * 2 + "s";
-
   el.style.opacity =
     .5 + Math.random() * .5;
-
   el.style.transform =
     `rotate(${20 + Math.random() * 20}deg)`;
-
   sky.appendChild(el);
-
   setTimeout(
     () => el.remove(),
     5000
   );
-
 }
-
 setInterval(
   spawnMeteor,
   450
 );
-
 for(let i = 0; i < 8; i++){
-
   setTimeout(
     spawnMeteor,
     i * 180
   );
-
 }
-
 </script>
-
 </body>
 </html>
